@@ -84,21 +84,28 @@ $(document).ready(function() {
 
     
     //cer
-    // filter items on click
-    $('#filters').on( 'click', '.type', function() {
-      var filterValue = $(this).attr('data-filter');
-      $container.isotope({ filter: filterValue });
+    var $container = $('.items-wrapper').isotope({
+        // options
+        itemSelector: '.item',
+        layoutMode: 'fitRows',
+        filter: '.google' // Set default filter to .google
     });
-    
-    // change is-checked class on buttons
-    $('.filters').each( function( i, typeGroup ) {
-        var $typeGroup = $( typeGroup );
-        $typeGroup.on( 'click', '.type', function() {
-          $typeGroup.find('.active').removeClass('active');
-          $( this ).addClass('active');
+
+    // Filter items on button click
+    $('#filters').on('click', '.type', function () {
+        var filterValue = $(this).attr('data-filter');
+        $container.isotope({ filter: filterValue });
+    });
+
+    // Change is-checked class on buttons
+    $('.filters').each(function (i, typeGroup) {
+        var $typeGroup = $(typeGroup);
+        $typeGroup.on('click', '.type', function () {
+            $typeGroup.find('.active').removeClass('active');
+            $(this).addClass('active');
         });
     });
-    
+
 
 
 });
